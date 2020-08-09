@@ -1,24 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import "./Weatther/component";
+import Component from "./Weatther/component";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Component
+        temp={40}
+        country={{ name: "VN", capital: "Ha Noi" }}
+        condition={"Haze"}
+      />
+      <Component
+        temp={15}
+        country={{ name: "Korean", capital: "Busan" }}
+        condition={"Clouds"}
+      />
+      <Component
+        temp={30}
+        country={{ name: "US", capital: "New York" }}
+        condition={"Clear"}
+      />
     </div>
   );
 }
