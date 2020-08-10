@@ -6,7 +6,6 @@ const Card = styled.div``;
 const Images = ({ condition }) => {
   const Icon = () => {
     var icon = "";
-    console.log(condition);
     switch (condition) {
       case "Clouds":
         icon = `./img/Mostly Cloudy-2x.png`;
@@ -48,7 +47,7 @@ const Images = ({ condition }) => {
         icon = `./img/Fog-2x.png`;
         break;
     }
-    console.log(icon);
+
     return icon;
   };
   return (

@@ -28,7 +28,7 @@ const Component = ({ temp, country, condition }) => {
   `;
   return (
     <Card>
-      <Country name={country.name} capital={country.capital} />
+      <Country name={country.name} city={country.city} />
       <Images condition={condition} />
       <Temperate temp={temp} />
       <Conditional condition={condition} />

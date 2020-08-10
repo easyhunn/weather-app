@@ -9,11 +9,11 @@ const Card = styled.div`
   }
 `;
 
-const Country = ({ capital, name }) => {
+const Country = ({ city, name }) => {
   return (
     <Card>
       <div id="capital">
-        <b>{capital}</b>
+        <b>{city}</b>
       </div>
       <div>{name}</div>
     </Card>
