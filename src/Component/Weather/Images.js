@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "@emotion/styled";
 
-const Card = styled.div``;
+const Card = styled.div`
+  padding: 15px;
+`;
 
 const Images = ({ condition }) => {
   const Icon = () => {

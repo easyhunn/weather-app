@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+
 import styled from "@emotion/styled";
 
 const Card = styled.div`
@@ -9,15 +10,55 @@ const Card = styled.div`
   }
 `;
 
-const Country = ({ city, name }) => {
+const Country = ({ city, name, location, handleSearch }) => {
+  const [query, setQuery] = useState(location);
   return (
     <Card>
       <div id="capital">
         <b>{city}</b>
       </div>
-      <div>{name}</div>
+      <CountryCard>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSearch(query);
+          }}
+        >
+          <InputCard
+            type="text"
+            id="searchBox"
+            onChange={(e) => setQuery(e.target.value)}
+            value={query}
+            required
+            style={{
+              width: "100px",
+              margin: "auto",
+              border: "none",
+              textAlign: "center",
+            }}
+          />
+          <div id="countryName">{name}</div>
+        </form>
+      </CountryCard>
     </Card>
   );
 };
 
+const CountryCard = styled.div`
+  form:hover #searchBox {
+    display: block;
+  }
+  form:hover #countryName {
+    display: none;
+  }
+`;
+const InputCard = styled.input`
+  display: none;
+  &:focus {
+    display: block;
+  }
+  &:focus + #countryName {
+    display: none;
+  }
+`;
 export default Country;

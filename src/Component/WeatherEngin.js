@@ -63,8 +63,8 @@ const WeatherEngin = ({ location }) => {
               type="text"
               onChange={(e) => setQuery(e.target.value)}
               value={query}
+              required
             />
-            <button>Submit</button>
           </form>
         </div>
       ) : loading ? (

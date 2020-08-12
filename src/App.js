@@ -1,13 +1,12 @@
 import React from "react";
 import "./App.css";
 import "./Component/Weather/component";
-import WeatherEngin from "./Component/WeatherEngin";
+import Component from "./Component/Weather/component";
 
 function App() {
   return (
     <div className="App">
-      <WeatherEngin location={"Hai Duong"} />
-      <WeatherEngin location={"Busan"} />
+      <Component location={"ha noi"} />
     </div>
   );
 }
