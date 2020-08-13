@@ -5,6 +5,8 @@ import Country from "./Country";
 import Images from "./Images";
 import Temperate from "./Temparate";
 import Conditional from "./Conditional";
+import RotateLoader from "react-spinners/RotateLoader";
+import { motion } from "framer-motion";
 
 const Component = ({ location }) => {
   const [weather, setWeather] = useState({
@@ -78,34 +80,36 @@ const Component = ({ location }) => {
   `;
 
   return (
-    <Card>
-      <div>
-        {!loading && !error.value ? (
-          <div>
-            <Country
-              city={weather.city}
-              name={weather.country}
-              handleSearch={getWeather}
-              location={location}
-            />
-            <Images condition={weather.condition} />
-            <Temperate temp={weather.temp} />
-            <Conditional condition={weather.condition} />
-          </div>
-        ) : loading ? (
-          <div style={{ color: "black" }}>On loading</div>
-        ) : !loading && error.value ? (
-          <div>
-            <p style={{ color: "red" }}>{error.message}</p>
-            <button onClick={() => setError({ value: false, message: "" })}>
-              Reset
-            </button>
-          </div>
-        ) : (
-          <div>something went wrong</div>
-        )}
-      </div>
-    </Card>
+    <motion.div initial={{ y: -50 }} animate={{ y: 0 }}>
+      <Card>
+        <div>
+          {!loading && !error.value ? (
+            <div>
+              <Country
+                city={weather.city}
+                name={weather.country}
+                handleSearch={getWeather}
+                location={location}
+              />
+              <Images condition={weather.condition} />
+              <Temperate temp={weather.temp} />
+              <Conditional condition={weather.condition} />
+            </div>
+          ) : loading ? (
+            <RotateLoader />
+          ) : !loading && error.value ? (
+            <div>
+              <p style={{ color: "red" }}>{error.message}</p>
+              <button onClick={() => setError({ value: false, message: "" })}>
+                Reset
+              </button>
+            </div>
+          ) : (
+            <div>something went wrong</div>
+          )}
+        </div>
+      </Card>
+    </motion.div>
   );
 };
 

@@ -12,23 +12,29 @@ const Card = styled.div`
 
 const Country = ({ city, name, location, handleSearch }) => {
   const [query, setQuery] = useState(location);
+  const [isSearching, setIsSearching] = useState(false);
+
   return (
     <Card>
       <div id="capital">
-        <b>{city}</b>
+        <b>{isSearching ? query : city}</b>
       </div>
       <CountryCard>
         <form
           onSubmit={(e) => {
             e.preventDefault();
+            setIsSearching("false");
             handleSearch(query);
           }}
         >
           <InputCard
             type="text"
             id="searchBox"
-            onChange={(e) => setQuery(e.target.value)}
-            value={query}
+            onChange={(e) => {
+              setQuery(e.target.value);
+              setIsSearching("true");
+            }}
+            value={isSearching ? query : city}
             required
             style={{
               width: "100px",
