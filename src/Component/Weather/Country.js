@@ -7,6 +7,10 @@ const Card = styled.div`
   font-family: "Merriweather", serif;
   #capital {
     font-size: 25px;
+    float: left;
+    width: 160px;
+    height: 35px;
+    overflow: hidden;
   }
 `;
 

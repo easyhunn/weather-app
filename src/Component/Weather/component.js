@@ -10,10 +10,10 @@ import { motion } from "framer-motion";
 
 const Component = ({ location }) => {
   const [weather, setWeather] = useState({
-    country: "VN",
-    city: "Ha Noi",
+    country: "",
+    city: "",
     temp: "",
-    condition: "haze",
+    condition: "",
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState({
@@ -58,8 +58,9 @@ const Component = ({ location }) => {
     color: white;
     border: 1px solid;
     display: flex;
-    width: 160px;
-    height: 220px;
+    position: relative;
+    width: 150px;
+    height: 100%;
     margin: auto;
     background-image: linear-gradient(
       to top,
@@ -75,12 +76,15 @@ const Component = ({ location }) => {
       )
     );
     flex-direction: column;
-    border-radius: 10%;
     justify-content: space-around;
   `;
 
   return (
-    <motion.div initial={{ y: -50 }} animate={{ y: 0 }}>
+    <motion.div
+      initial={{ y: -50 }}
+      animate={{ y: 0 }}
+      style={{ height: 100 / 3 + "%" }}
+    >
       <Card>
         <div>
           {!loading && !error.value ? (
