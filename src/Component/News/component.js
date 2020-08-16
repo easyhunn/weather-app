@@ -1,33 +1,39 @@
 import React, { useState, useEffect } from "react";
 
-const News = () => {
+import Card from "./card";
+
+const News = ({ query }) => {
   const [articles, setArticles] = useState([]);
-  const getData = async () => {
-    const bitCoin = await fetch(
-      "http://newsapi.org/v2/everything?q=bitcoin&from=2020-07-15&sortBy=publishedAt&apiKey=d24f876bdd754d14b65999a45a0081f4"
-    );
-    return bitCoin.json();
+  const getQuery = () => {
+    if (query === "bitcoin")
+      return "http://newsapi.org/v2/everything?q=bitcoin&from=2020-07-16&sortBy=publishedAt&apiKey=d24f876bdd754d14b65999a45a0081f4";
+    else if (query === "business")
+      return "http://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=d24f876bdd754d14b65999a45a0081f4";
+    else if (query === "apple")
+      return "http://newsapi.org/v2/everything?q=apple&from=2020-08-15&to=2020-08-15&sortBy=popularity&apiKey=d24f876bdd754d14b65999a45a0081f4";
+    else
+      return "http://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=d24f876bdd754d14b65999a45a0081f4";
   };
-  const getNews = () => {
-    getData().then((res) => {
+  const getData = async () => {
+    const data = await fetch(getQuery());
+    const dataJson = data.json();
+    dataJson.then((res) => {
       setArticles(res.articles);
     });
   };
+
   useEffect(() => {
-    getNews();
-  }, []);
+    getData();
+  }, [articles]);
   return (
     <div style={componentStyle}>
       {articles.map((article) => {
         return (
-          <div style={cardStyle}>
-            <a href={article.url} target="_blank" style={imgLinkStyle}>
-              <img src={article.urlToImage} alt="img" style={imgStyle} />
-            </a>
-            <a href={article.url} style={linkStyle} target="_blank">
-              <b>{article.title}</b>
-            </a>
-          </div>
+          <Card
+            url={article.url}
+            urlToImage={article.urlToImage}
+            title={article.title}
+          />
         );
       })}
     </div>
@@ -41,26 +47,5 @@ const componentStyle = {
   overflow: "auto",
   flexWrap: "wrap",
 };
-const cardStyle = {
-  border: "1px solid white",
-  height: "150px",
-  width: "30%",
-  backgroundColor: "white",
-  display: "flex",
-  flexDirection: "column",
-  margin: "15px",
-};
-const linkStyle = {
-  textDecoration: "none",
-  width: "100%",
-  height: "50px",
-  overflow: "auto",
-};
-const imgLinkStyle = {
-  width: "300px",
-};
-const imgStyle = {
-  width: "100%",
-  height: "100px",
-};
+
 export default News;
