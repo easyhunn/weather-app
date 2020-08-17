@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import "./App.css";
 import "./Component/Weather/component";
@@ -7,35 +7,13 @@ import Clock from "./Component/Clock/clock";
 import News from "./Component/News/component";
 
 function App() {
-  const [query, setQuery] = useState("");
   return (
-    <div className="App" style={style}>
+    <div className="App" style={container}>
       <div style={leftContent}>
         <Clock />
       </div>
       <div style={centerContent}>
-        <div style={topCenterContent}>
-          <form>
-            <select
-              name="news"
-              id=""
-              style={{
-                backgroundColor: "rgba(0, 0, 0, 0.5)",
-                color: "white",
-              }}
-              onChange={(e) => {
-                setQuery(e.target.value);
-              }}
-            >
-              <option value="headline">headlines</option>
-              <option value="bitcoin">Bit Coin</option>
-              <option value="business">Business</option>
-              <option value="apple">Apple</option>
-            </select>
-          </form>
-          <b style={{ color: "white", marginLeft: "30%" }}>LATEST NEWS</b>
-        </div>
-        <News query={query} />
+        <News />
       </div>
       <div style={rightContent}>
         <Component location={"Hai duong"} />
@@ -46,7 +24,7 @@ function App() {
   );
 }
 
-const style = {
+const container = {
   position: "absolute",
   height: "100%",
   width: "100%",
@@ -57,25 +35,21 @@ const style = {
 const leftContent = {
   float: "left",
   width: "15%",
-  border: "5px solid",
+  border: "5px solid rgb(207, 124, 29)",
+  display: "flex",
+  justifyContent: "center",
 };
 const centerContent = {
   float: "left",
   width: "70%",
   borderTop: "5px solid",
-  borderBottom: "5px solid",
+  borderBottom: "5px solid rgb(207, 124, 29)",
   height: "250px",
 };
 const rightContent = {
   width: "15%",
   height: "100%",
-  border: "5px solid",
-};
-const topCenterContent = {
-  borderBottom: "1px solid",
-  display: "flex",
-  flexDirect: "row",
-  padding: "5px",
+  border: "5px solid rgb(207, 124, 29)",
 };
 
 export default App;

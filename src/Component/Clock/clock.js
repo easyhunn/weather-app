@@ -1,12 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const Clock = () => {
   const [time, setTime] = useState(new Date());
-  const getCurrentTime = () => {
-    setInterval(() => {
-      setTime(new Date());
-    }, 1000);
-  };
+
   const style = {
     color: "red",
     border: "1px solid red",
@@ -19,9 +15,19 @@ const Clock = () => {
     paddingTop: "15px",
     paddingBottom: "10px",
   };
-  getCurrentTime();
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime(new Date());
+    }, 1000);
+    return () => {
+      clearInterval(interval.current);
+    };
+  }, []);
+
   return (
     <div>
+      {console.log("??")}
       <h3 style={style}>{time.toLocaleTimeString()}</h3>
     </div>
   );

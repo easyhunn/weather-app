@@ -77,8 +77,32 @@ const Component = ({ location }) => {
     );
     flex-direction: column;
     justify-content: space-around;
+    align-items: center;
   `;
 
+  if (loading) {
+    return (
+      <motion.div>
+        <Card>
+          <RotateLoader />
+        </Card>
+      </motion.div>
+    );
+  }
+  if (!loading && error.value) {
+    return (
+      <motion.div>
+        <Card>
+          <div>
+            <p style={{ color: "red" }}>{error.message}</p>
+            <button onClick={() => setError({ value: false, message: "" })}>
+              Reset
+            </button>
+          </div>
+        </Card>
+      </motion.div>
+    );
+  }
   return (
     <motion.div
       initial={{ y: -50 }}
@@ -86,32 +110,15 @@ const Component = ({ location }) => {
       style={{ height: 100 / 3 + "%" }}
     >
       <Card>
-        <div>
-          {!loading && !error.value ? (
-            <div>
-              <Country
-                city={weather.city}
-                name={weather.country}
-                handleSearch={getWeather}
-                location={location}
-              />
-              <Images condition={weather.condition} />
-              <Temperate temp={weather.temp} />
-              <Conditional condition={weather.condition} />
-            </div>
-          ) : loading ? (
-            <RotateLoader />
-          ) : !loading && error.value ? (
-            <div>
-              <p style={{ color: "red" }}>{error.message}</p>
-              <button onClick={() => setError({ value: false, message: "" })}>
-                Reset
-              </button>
-            </div>
-          ) : (
-            <div>something went wrong</div>
-          )}
-        </div>
+        <Country
+          city={weather.city}
+          name={weather.country}
+          handleSearch={getWeather}
+          location={location}
+        />
+        <Images condition={weather.condition} />
+        <Temperate temp={weather.temp} />
+        <Conditional condition={weather.condition} />
       </Card>
     </motion.div>
   );
