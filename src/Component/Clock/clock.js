@@ -9,7 +9,7 @@ const Clock = () => {
     backgroundImage:
       "linear-gradient(to top, rgb(219, 138, 180), rgb(76, 76, 77))",
     float: "left",
-    width: "150px",
+    width: "100%",
     height: "40px",
     fontSize: "20px",
     paddingTop: "15px",
@@ -27,7 +27,6 @@ const Clock = () => {
 
   return (
     <div>
-      {console.log("??")}
       <h3 style={style}>{time.toLocaleTimeString()}</h3>
     </div>
   );

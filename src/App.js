@@ -43,12 +43,10 @@ const centerContent = {
   float: "left",
   width: "70%",
   borderTop: "5px solid",
-  borderBottom: "5px solid rgb(207, 124, 29)",
-  height: "250px",
+  border: "5px solid rgb(207, 124, 29)",
 };
 const rightContent = {
   width: "15%",
-  height: "100%",
   border: "5px solid rgb(207, 124, 29)",
 };
 

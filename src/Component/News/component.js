@@ -38,23 +38,28 @@ const News = () => {
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);
+
+  // on loading
   if (loading) {
     return (
       <div style={container}>
         <Heading setQuery={setQuery} />
-        <div style={main}>
+        <div style={loadingStyle}>
           <ClipLoader />
         </div>
       </div>
     );
   }
+
+  //normal case
   return (
     <div style={container}>
       <Heading setQuery={setQuery} />
       <div style={main}>
-        {articles.map((article) => {
+        {articles.map((article, id) => {
           return (
             <Card
+              key={id}
               url={article.url}
               urlToImage={article.urlToImage}
               title={article.title}
@@ -69,12 +74,20 @@ const main = {
   display: "flex",
   flexDirection: "row",
   width: "100%",
-  height: "200px",
+  height: "95%",
   overflow: "auto",
   flexWrap: "wrap",
-  justifyContent: "center",
   alignItems: "center",
 };
-
-const container = {};
+const loadingStyle = {
+  display: "flex",
+  flexDirection: "column",
+  width: "100%",
+  height: "95%",
+  justifyContent: "center",
+  alignItems: 'center',
+};
+const container = {
+  height: "100%",
+};
 export default News;

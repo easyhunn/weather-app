@@ -3,10 +3,15 @@ import React from "react";
 const Card = ({ url, urlToImage, title }) => {
   return (
     <div style={Style}>
-      <a href={url} target="_blank" style={imgLinkStyle}>
+      <a
+        href={url}
+        target="_blank"
+        style={imgLinkStyle}
+        rel="noopener noreferrer"
+      >
         <img src={urlToImage} alt="img" style={imgStyle} />
       </a>
-      <a href={url} style={linkStyle} target="_blank">
+      <a href={url} style={linkStyle} target="_blank" rel="noopener noreferrer">
         <b>{title}</b>
       </a>
     </div>
